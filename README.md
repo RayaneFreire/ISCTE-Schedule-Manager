@@ -42,23 +42,21 @@ O objetivo deste projeto é desenvolver uma solução para otimização e gestã
 
 ```text
 .
-├── docs/
-│   ├── artigo/
-│   ├── arquitetura/
-│   ├── bpmn/
-│   └── erd/
-│
-├── prototipos/
-│
-├── dados/
-│   └── csv/
-│
-├── database/
-│
-├── frontend/
+ISCTE-Schedule-Manager
 │
 ├── backend/
-│
+├── frontend/
+├── database/
+├── data/
+├── docs/
+│   ├── architecture/
+│   ├── articles/
+│   ├── bpmn/
+│   ├── presentation/
+│   ├── requirements/
+│   └── report/
+├── prototypes/
+├── tests/
 └── README.md
 ```
 
