@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_FaseB" targetNamespace="http://iscte.pt/schedule-manager/bpmn" exporter="Camunda Web Modeler" exporterVersion="5acd1b5" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.10.0">
+  <bpmn:collaboration id="Collaboration_FaseB">
+    <bpmn:participant id="Participant_FaseB" name="Fase B - Geração e Validação dos Horários" processRef="Process_FaseB" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_FaseB" name="Fase B - Geração e Validação dos Horários" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_FaseB">
+      <bpmn:lane id="Lane_Sistema" name="Sistema">
+        <bpmn:flowNodeRef>B1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G_XOR_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>B9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Gestor" name="Gestor de Horários">
+        <bpmn:flowNodeRef>B7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:task id="B1" name="B1 - Carregar Dados&#10;Académicos">
+      <bpmn:incoming>Flow_E1_B1</bpmn:incoming>
+      <bpmn:outgoing>Flow_B1_B2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B2" name="B2 - Construir&#10;Proposta de Horário">
+      <bpmn:incoming>Flow_B1_B2</bpmn:incoming>
+      <bpmn:outgoing>Flow_B2_B3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B3" name="B3 - Verificar&#10;Disponibilidade das Salas">
+      <bpmn:incoming>Flow_B2_B3</bpmn:incoming>
+      <bpmn:incoming>Flow_B8_B3</bpmn:incoming>
+      <bpmn:outgoing>Flow_B3_B4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B4" name="B4 - Verificar&#10;Disponibilidade dos Docentes">
+      <bpmn:incoming>Flow_B3_B4</bpmn:incoming>
+      <bpmn:outgoing>Flow_B4_B5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B5" name="B5 - Verificar&#10;Disponibilidade das Turmas">
+      <bpmn:incoming>Flow_B4_B5</bpmn:incoming>
+      <bpmn:outgoing>Flow_B5_B6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B6" name="B6 - Validar&#10;Capacidade das Salas">
+      <bpmn:incoming>Flow_B5_B6</bpmn:incoming>
+      <bpmn:outgoing>Flow_B6_G1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="G_XOR_1" name="G_XOR_1 - Existem&#10;Conflitos?">
+      <bpmn:incoming>Flow_B6_G1</bpmn:incoming>
+      <bpmn:outgoing>Flow_G1_B7_Sim</bpmn:outgoing>
+      <bpmn:outgoing>Flow_G1_B9_Nao</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="B7" name="B7 - Ajustar&#10;Proposta de Horário">
+      <bpmn:incoming>Flow_G1_B7_Sim</bpmn:incoming>
+      <bpmn:outgoing>Flow_B7_B8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B8" name="B8 - Revalidar Horário">
+      <bpmn:incoming>Flow_B7_B8</bpmn:incoming>
+      <bpmn:outgoing>Flow_B8_B3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="B9" name="B9 - Consolidar&#10;Horário Validado">
+      <bpmn:incoming>Flow_G1_B9_Nao</bpmn:incoming>
+      <bpmn:outgoing>Flow_B9_E2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="E2" name="E2 - Horário&#10;Validado">
+      <bpmn:incoming>Flow_B9_E2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="E1" name="E1 - Início da Construção dos Horários">
+      <bpmn:outgoing>Flow_E1_B1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_E1_B1" name="Entrada da Fase A" sourceRef="E1" targetRef="B1" />
+    <bpmn:sequenceFlow id="Flow_B1_B2" sourceRef="B1" targetRef="B2" />
+    <bpmn:sequenceFlow id="Flow_B2_B3" sourceRef="B2" targetRef="B3" />
+    <bpmn:sequenceFlow id="Flow_B8_B3" name="Nova validação" sourceRef="B8" targetRef="B3" />
+    <bpmn:sequenceFlow id="Flow_B3_B4" sourceRef="B3" targetRef="B4" />
+    <bpmn:sequenceFlow id="Flow_B4_B5" sourceRef="B4" targetRef="B5" />
+    <bpmn:sequenceFlow id="Flow_B5_B6" sourceRef="B5" targetRef="B6" />
+    <bpmn:sequenceFlow id="Flow_B6_G1" sourceRef="B6" targetRef="G_XOR_1" />
+    <bpmn:sequenceFlow id="Flow_G1_B7_Sim" name="Sim" sourceRef="G_XOR_1" targetRef="B7">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">conflitos = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_G1_B9_Nao" name="Não" sourceRef="G_XOR_1" targetRef="B9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">conflitos = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_B7_B8" sourceRef="B7" targetRef="B8" />
+    <bpmn:sequenceFlow id="Flow_B9_E2" sourceRef="B9" targetRef="E2" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_FaseB">
+    <bpmndi:BPMNPlane id="BPMNPlane_FaseB" bpmnElement="Collaboration_FaseB">
+      <bpmndi:BPMNShape id="Participant_di" bpmnElement="Participant_FaseB" isHorizontal="true">
+        <dc:Bounds x="160" y="60" width="2020" height="500" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Sistema_di" bpmnElement="Lane_Sistema" isHorizontal="true">
+        <dc:Bounds x="190" y="240" width="1990" height="320" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Gestor_di" bpmnElement="Lane_Gestor" isHorizontal="true">
+        <dc:Bounds x="190" y="60" width="1990" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B1_di" bpmnElement="B1">
+        <dc:Bounds x="330" y="315" width="145" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B2_di" bpmnElement="B2">
+        <dc:Bounds x="525" y="315" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B3_di" bpmnElement="B3">
+        <dc:Bounds x="725" y="315" width="155" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B4_di" bpmnElement="B4">
+        <dc:Bounds x="930" y="315" width="155" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B5_di" bpmnElement="B5">
+        <dc:Bounds x="1135" y="315" width="155" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B6_di" bpmnElement="B6">
+        <dc:Bounds x="1340" y="315" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G1_di" bpmnElement="G_XOR_1" isMarkerVisible="true">
+        <dc:Bounds x="1550" y="330" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1525" y="385" width="100" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B7_di" bpmnElement="B7">
+        <dc:Bounds x="1500" y="105" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B8_di" bpmnElement="B8">
+        <dc:Bounds x="1500" y="450" width="150" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="B9_di" bpmnElement="B9">
+        <dc:Bounds x="1700" y="315" width="155" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E2_di" bpmnElement="E2">
+        <dc:Bounds x="1945" y="337" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1935" y="378" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E1_di" bpmnElement="E1">
+        <dc:Bounds x="312" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="255" y="82" width="135" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="F1_di" bpmnElement="Flow_E1_B1">
+        <di:waypoint x="330" y="168" />
+        <di:waypoint x="330" y="238" />
+        <di:waypoint x="403" y="238" />
+        <di:waypoint x="403" y="315" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="340" y="203" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F2_di" bpmnElement="Flow_B1_B2">
+        <di:waypoint x="475" y="355" />
+        <di:waypoint x="525" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F3_di" bpmnElement="Flow_B2_B3">
+        <di:waypoint x="675" y="355" />
+        <di:waypoint x="725" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F10_di" bpmnElement="Flow_B8_B3">
+        <di:waypoint x="1500" y="485" />
+        <di:waypoint x="803" y="485" />
+        <di:waypoint x="803" y="395" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1100" y="463" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F4_di" bpmnElement="Flow_B3_B4">
+        <di:waypoint x="880" y="355" />
+        <di:waypoint x="930" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F5_di" bpmnElement="Flow_B4_B5">
+        <di:waypoint x="1085" y="355" />
+        <di:waypoint x="1135" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F6_di" bpmnElement="Flow_B5_B6">
+        <di:waypoint x="1290" y="355" />
+        <di:waypoint x="1340" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F7_di" bpmnElement="Flow_B6_G1">
+        <di:waypoint x="1490" y="355" />
+        <di:waypoint x="1550" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F8_di" bpmnElement="Flow_G1_B7_Sim">
+        <di:waypoint x="1575" y="330" />
+        <di:waypoint x="1575" y="185" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1580" y="250" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F11_di" bpmnElement="Flow_G1_B9_Nao">
+        <di:waypoint x="1600" y="355" />
+        <di:waypoint x="1700" y="355" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1635" y="333" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F9_di" bpmnElement="Flow_B7_B8">
+        <di:waypoint x="1650" y="145" />
+        <di:waypoint x="1675" y="145" />
+        <di:waypoint x="1675" y="485" />
+        <di:waypoint x="1650" y="485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F12_di" bpmnElement="Flow_B9_E2">
+        <di:waypoint x="1855" y="355" />
+        <di:waypoint x="1945" y="355" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
