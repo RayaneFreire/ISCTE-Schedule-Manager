@@ -8,4 +8,3 @@ Os requisitos foram definidos com base no enunciado do projeto, nos processos re
 
 - `requirements.md` - objetivo, âmbito, perfis de utilizador, requisitos funcionais, requisitos não funcionais e limitações do protótipo.
 
-O documento segue uma estrutura simplificada inspirada na norma IEEE 830 e adequada ao âmbito académico do projeto.
