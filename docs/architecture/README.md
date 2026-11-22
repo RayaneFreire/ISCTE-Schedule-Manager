@@ -8,7 +8,3 @@ Esta pasta contém os diagramas que descrevem a arquitetura e o modelo de dados 
 - `figura_04_modelo_er_horarios.png` — modelo entidade–relação dos horários, aulas, eventos e disponibilidades.
 - `figura_05_modelo_er_governacao.png` — modelo entidade–relação dos utilizadores, perfis, permissões, pedidos, registos e regras.
 
-As Figuras 1 e 2 representam a arquitetura da plataforma e o modelo de dados académico, incluindo a importação dos dados dos cursos, salas e docentes descrita nas secções 5.2 e 5.3 do relatório.
-
-Os elementos destacados a amarelo identificam os componentes, dados e relações associados à recolha e importação dos docentes.
-
