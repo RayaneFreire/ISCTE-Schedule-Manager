@@ -1,0 +1,18 @@
+{
+  "name": "iscte-schedule-manager",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Academic timetabling prototype for ISCTE (ODES): Greedy + Simulated Annealing and NSGA-II.",
+  "scripts": {
+    "start": "npx --yes http-server -c-1 -p 8080 frontend",
+    "test": "node testes/verify-results.js",
+    "analysis": "SO_ANALISE=1 node backend/tools/experiencias.js node_modules/sql.js/dist/sql-asm.js data/experiments 300 TODOS 1001 30",
+    "experiments": "node backend/tools/experiencias.js node_modules/sql.js/dist/sql-asm.js data/experiments 300 TODOS 1001 30"
+  },
+  "dependencies": {
+    "sql.js": "1.10.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
