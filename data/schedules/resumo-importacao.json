@@ -1,0 +1,200 @@
+{
+ "relatorio": {
+  "linhas": 26019,
+  "semData": 16,
+  "foraSemestre": 166,
+  "semSala": 2164,
+  "semSalaPedidoSemSala": 1151,
+  "salasCorrigidas": [
+   "0,00E+00 → 0E00",
+   "1,00E+02 → 1E02",
+   "1,00E+03 → 1E03",
+   "1,00E+04 → 1E04",
+   "1,00E+05 → 1E05",
+   "1,00E+06 → 1E06",
+   "1,00E+07 → 1E07",
+   "1,00E+08 → 1E08",
+   "1,00E+10 → 1E10",
+   "2,00E+02 → 2E02",
+   "2,00E+03 → 2E03",
+   "2,00E+04 → 2E04",
+   "2,00E+05 → 2E05",
+   "2,00E+06 → 2E06",
+   "2,00E+07 → 2E07",
+   "2,00E+08 → 2E08",
+   "2,00E+10 → 2E10"
+  ],
+  "salasForaCadastro": [
+   "0S08"
+  ],
+  "semanasRecuperadas": 733,
+  "emFeriadoAlvo": 733,
+  "avisos": [],
+  "aulas": 5748,
+  "turnos": 1706,
+  "ucs": 747,
+  "turmas": 526,
+  "cursos": 130,
+  "salas": 132,
+  "ocorrencias": 26570,
+  "semanasPorAula": {
+   "1": 2288,
+   "2": 623,
+   "3": 292,
+   "4": 391,
+   "5": 276,
+   "6": 210,
+   "7": 87,
+   "8": 139,
+   "9": 160,
+   "10": 269,
+   "11": 335,
+   "12": 411,
+   "13": 250,
+   "14": 17
+  },
+  "semSalaSemPedido": 1013,
+  "pedidasSemSala": [
+   "Lab ISTA"
+  ],
+  "origem": {
+   "ano": "2022/23",
+   "inicio": "2022-09-12",
+   "semanas": 14,
+   "feriados": [
+    [
+     "2022-10-05",
+     "Implantação da República"
+    ],
+    [
+     "2022-11-01",
+     "Dia de Todos os Santos"
+    ],
+    [
+     "2022-12-01",
+     "Restauração da Independência"
+    ],
+    [
+     "2022-12-08",
+     "Imaculada Conceição"
+    ]
+   ]
+  },
+  "alvo": {
+   "ano": "2022/23",
+   "inicio": "2022-09-12",
+   "semanas": 14
+  }
+ },
+ "resumo": {
+  "professor": {
+   "hard": 2152,
+   "soft": 3230,
+   "porRegra": {
+    "CAPACIDADE": {
+     "n": 604,
+     "custo": 879950
+    },
+    "DESPERDICIO": {
+     "n": 1011,
+     "custo": 2567.839999999987
+    },
+    "CARACTERISTICA": {
+     "n": 252,
+     "custo": 1584.8
+    },
+    "FERIADOS": {
+     "n": 733,
+     "custo": 733
+    },
+    "FORA_MANCHA": {
+     "n": 384,
+     "custo": 3840
+    },
+    "NAO_AGENDADA": {
+     "n": 740,
+     "custo": 740000
+    },
+    "CARACT_ESSENCIAL": {
+     "n": 36,
+     "custo": 54000
+    },
+    "MAX_SEGUIDAS_UC": {
+     "n": 403,
+     "custo": 751333.3333333316
+    },
+    "FUROS_TURMA": {
+     "n": 396,
+     "custo": 307.1428571428575
+    },
+    "MAX_DIA_TURMA": {
+     "n": 281,
+     "custo": 260.14285714285705
+    },
+    "CONF_TURMA": {
+     "n": 369,
+     "custo": 775666.6666666674
+    },
+    "MESMO_DIA_TURNO": {
+     "n": 173,
+     "custo": 692
+    }
+   }
+  },
+  "melhorado": {
+   "hard": 872,
+   "soft": 2385,
+   "porRegra": {
+    "FERIADOS": {
+     "n": 733,
+     "custo": 733
+    },
+    "DESPERDICIO": {
+     "n": 281,
+     "custo": 311.3600000000003
+    },
+    "FORA_MANCHA": {
+     "n": 384,
+     "custo": 3840
+    },
+    "CARACT_ESSENCIAL": {
+     "n": 25,
+     "custo": 37500
+    },
+    "NAO_AGENDADA": {
+     "n": 18,
+     "custo": 18000
+    },
+    "CARACTERISTICA": {
+     "n": 137,
+     "custo": 423.9999999999994
+    },
+    "CAPACIDADE": {
+     "n": 57,
+     "custo": 74150
+    },
+    "MAX_SEGUIDAS_UC": {
+     "n": 403,
+     "custo": 751333.3333333316
+    },
+    "FUROS_TURMA": {
+     "n": 396,
+     "custo": 307.1428571428575
+    },
+    "MAX_DIA_TURMA": {
+     "n": 281,
+     "custo": 260.14285714285705
+    },
+    "CONF_TURMA": {
+     "n": 369,
+     "custo": 775666.6666666674
+    },
+    "MESMO_DIA_TURNO": {
+     "n": 173,
+     "custo": 692
+    }
+   }
+  },
+  "mudancasSala": 4966
+ }
+}
