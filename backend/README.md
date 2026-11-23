@@ -16,4 +16,4 @@ Os comandos devem ser executados a partir da raiz do repositório, após `npm in
 | `tools/build-sample.js` | Gera o pequeno conjunto de dados de demonstração |
 | `tools/contas.js` | Gera os hashes PBKDF2 das contas de demonstração |
 
-Os comentários do código e as mensagens apresentadas na consola estão em português.
+
